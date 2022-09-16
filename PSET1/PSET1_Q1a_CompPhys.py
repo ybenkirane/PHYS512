@@ -32,11 +32,6 @@ d1_Norm = (y04 - 8*y02 + 8*y01 - y03)/(12*dx)
 d1_Stretched = (y14 - 8*y12 + 8*y11 - y13)/(12*dx)
 
 
-d1_Stretched_Optim = (func(x0*0.01 - 2*(0.0758)) - 8*func(x0*0.01 - (0.0758)) + 8*func(x0*0.01 + (0.0758)) - func(x0*0.01 + 2*(0.0758)))/(12*(0.0758))
-d1_Norm_Optim = (func(x0 - 2*0.000758) - 8*func(x0 - (7.58 * 10**(-4))) + 8*func(x0 + (7.58 * 10**(-4))) - func(x0 + 2*(7.58 * 10**(-4))))/(12*(7.58 * 10**(-4)))
-
-print('Error on Exp(0.01x) is ', np.abs(d1_Stretched_Optim - np.exp(x0)), 'at a delta of ', 0.0758)
-print('Error on Exp(x) Exp is ', np.abs(d1_Norm_Optim - np.exp(x0)), 'at a delta of ', (7.58 * 10**(-4)))
 
 
 fig, ax1 = plt.subplots(figsize=(8, 8))
@@ -52,22 +47,9 @@ ax1.tick_params(axis="y", labelcolor='red')
 ax2.set_ylabel('Exp(0.01x) Error', color = 'green', fontsize = 14)
 ax2.tick_params(axis="y", labelcolor='green')
 
-
-xNorm = [0.000758]
-yNorm = [9.725553695716371* 10**(-14)]
-
-xStretch = [(0.0758)]
-yStretch = [1.7082327736073493]
-
-ax1.plot(xNorm, yNorm, "o", color="blue", markersize=10, label='Estimate for Optimal Delta on Exp(x)')
-ax2.plot(xStretch, yStretch, "o", color="black", markersize=10, label='Estimate for Optimal Delta on Exp(0.01x)')
-
 plt.title('Error Estimation of the Exponential about x = 1')
 fig.tight_layout()
 
-ax1.grid(True)
-ax1.legend(loc = 'lower center')
-ax2.legend(loc='upper center')
 plt.savefig('ErrorEst_Q1.png')
 plt.show()
 
