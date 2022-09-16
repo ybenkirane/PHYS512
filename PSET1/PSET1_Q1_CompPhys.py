@@ -52,10 +52,9 @@ ax1.tick_params(axis="y", labelcolor='red')
 ax2.set_ylabel('Exp(0.01x) Error', color = 'green', fontsize = 14)
 ax2.tick_params(axis="y", labelcolor='green')
 
-
+#Estimated on paper
 xNorm = [0.000758]
 yNorm = [9.725553695716371* 10**(-14)]
-
 xStretch = [(0.0758)]
 yStretch = [1.7082327736073493]
 
