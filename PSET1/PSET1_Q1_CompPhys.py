@@ -68,6 +68,7 @@ fig.tight_layout()
 ax1.grid(True)
 ax1.legend(loc = 'lower center')
 ax2.legend(loc='upper center')
+
 plt.savefig('ErrorEst_Q1.png')
 plt.show()
 
