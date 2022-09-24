@@ -62,7 +62,7 @@ plt.savefig('Log2Cheb.png')
 
 def log2Func(num, tol = 1e-8, ErrVal = False):
     mantis_num, exp_num = np.frexp(num)
-    mantis_e, expon = np.frexp(np.e)
+    mantis_e, expon = np.frexp(np.e) #decomposes numbers into their mantissa and exponent
     print(mantis_num, exp_num, mantis_e, expon, 'log 2 cheb')
     cheby = chebyLog2(tol = tol)[2] 
     log2_num = cheby(mantis_num) + exp_num 
