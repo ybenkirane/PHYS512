@@ -14,13 +14,10 @@ from matplotlib import pyplot as plt
 
 
 data = np.loadtxt("dish_zenith.txt").T # Importing raw data
-
-
-
 def paraboloid(x, y, fit):
     return fit[0]*(x**2 + y**2) + fit[1]*x + fit[2]*y + fit[3]
 
-funcs = np.array(
+fns = np.array(
     [
         lambda x : x[0]**2 + x[1]**2 ,
         lambda x : x[0] ,
@@ -53,9 +50,9 @@ xyVector = np.array([xSet, ySet]).T
 #Array with analytic lambda functions to form matrix
 
 
-matrixA = np.zeros([len(xSet), len(funcs)])
-for n in range(len(funcs)):
-    matrixA[:, n] = np.array([funcs[n](m) for m in xyVector])
+matrixA = np.zeros([len(xSet), len(fns)])
+for n in range(len(fns)):
+    matrixA[:, n] = np.array([fns[n](m) for m in xyVector])
 
 lhs = matrixA.T@matrixA
 rhs = matrixA.T@zSet
@@ -85,6 +82,7 @@ ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
 ax.set_title('Paraboloid Surface on Dish Data')
+plt.savefig('SurfaceOnDish.png')
 plt.show()
 
 
