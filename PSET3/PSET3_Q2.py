@@ -11,7 +11,7 @@ from scipy import integrate
 import astropy.units as u
 
 
-elementList = ['U238','Th234','Pa234', 'U234', 'Th230','Ra226', 'Rn223','Po218','Pb214','Bu214', 'Po214','Pb210','Bi210','Po210', 'Pb206']
+elementList = ['U238','Th234','Pr234', 'U234', 'Th230','Ra226', 'Rn223','Po218','Pb214','Bu214', 'Po214','Pb210','Bi210','Po210', 'Pb206']
 
 lifeSet = [4.468e9 * u.yr, 24.10 * u.day, 6.70 * u.hr, 245500 * u.yr,75380 * u.yr,1600 * u.yr,3.8235 * u.d,3.10 * u.min,26.8 * u.min,19.9 * u.min,164.3e-6 * u.s,22.3 * u.yr,5.015 * u.yr,138376 * u.d]
 
