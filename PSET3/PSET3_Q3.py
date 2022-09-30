@@ -5,6 +5,7 @@ Created on Wed Sep 28 16:19:12 2022
 @author: Yacine Benkirane
 """
 
+#very confusing problem for the error and noise segments 
 
 import numpy as np 
 from matplotlib import pyplot as plt
