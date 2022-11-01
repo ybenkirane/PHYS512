@@ -1,0 +1,12 @@
+Hubble =            6.80E+01 +/- 1.18E+00
+
+Baryon =            2.24E-02 +/- 2.32E-04
+
+CDM =               1.19E-01 +/- 2.65E-03
+
+Optical Depth =     5.82E-02 +/- 3.66E-02
+
+Primordial Amp. =         2.11E-09 +/- 1.47E-10
+
+Primordial Tilt =         9.70E-01 +/- 6.40E-03
+
