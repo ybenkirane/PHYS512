@@ -3,7 +3,7 @@
 Created on Sun Nov 7 20:50:49 2022
 
 @author: Yacine Benkirane
-Contributions, worked with various classmates on the discord (From Recollection): Matt, Nic, Guillaume, Jeff, Louis, Chris
+Contributions, worked with various classmates on the discord (From Recollection): Matt, Nic, Guillaume, Jeff, Louis, Chris, Steve
 """
 
 import numpy as np
@@ -37,7 +37,7 @@ def offsettedAutoCorrelation(u, offset):
 def wraplessCorrelation(u,v):
     
         #Question of Padding: pad u and v with zeroes to maintain the center of convolution
-    zeroes = np.zeros(len(u)) 
+    zeroes = np.zeros(len(v)) 
     
         #To avoid circulant conditions, padding input with zeroes should be sufficent. 
     u_Padding = np.hstack((u, zeroes))
