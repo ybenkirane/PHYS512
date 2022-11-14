@@ -3,7 +3,8 @@
 Created on Sun Nov 7 20:50:49 2022
 
 @author: Yacine Benkirane
-Contributions, worked with various classmates on the discord (From Recollection): Matt, Nic, Guillaume, Jeff, Louis, Chris, Steve
+Contributions, worked with various classmates on the discord (From Recollection): 
+    Matt, Nic, Guillaume, Jeff, Louis, Chris, Steve
 """
 
 import numpy as np
