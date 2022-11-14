@@ -24,7 +24,7 @@ def dftOffset(fun:np.ndarray, x0:int):
 
 def correlation(u,v):
     
-    return irfft(rfft(u)*np.conj(rfft(v)))
+    return irfft(rfft(u) * np.conj(rfft(v)))
     #This function will throw back the correlation of (u,v)
 
 def offsettedAutoCorrelation(u, offset):
