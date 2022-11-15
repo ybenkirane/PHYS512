@@ -4,7 +4,7 @@ Created on Sun Nov 7 20:50:49 2022
 
 @author: Yacine Benkirane
 Contributions, worked with various classmates on the discord (From Recollection): 
-    Matt, Nic, Guillaume, Jeff, Louis, Chris, Steve
+    Matt, Nic, Simon, Guillaume, Jeff, Louis, Chris, Steve
 """
 
 import numpy as np
@@ -57,6 +57,8 @@ plt.figure(figsize=(10,5))
 plt.plot(x,fun,label="Original Gaussian")
 plt.plot(x,offsetted_fun,label="Shifted Gaussian")
 plt.title("Convolution Gaussian Shift")
+plt.xlabel("Phase")
+plt.ylabel("Intensity")
 plt.legend()
 plt.savefig("ShiftedGaussian.png")
 plt.show()
