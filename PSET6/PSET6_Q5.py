@@ -24,6 +24,8 @@ sys.path.append(data_dir)
 json_fname = "BBH_events_v3.json"
 events = ['GW151226','GW170104', 'GW150914','LVT151012']
 
+
+
 def Convolution(u,v):
     
     u_ft=np.fft.fft(u)
@@ -40,30 +42,34 @@ def Gauss(x, mu, sig):
 def retrieveSpectrum(time, strn, window, smooth_width):
     
     frqs = np.fft.fftfreq(len(time),(time[1] - time[0]))
+    
     ps = np.abs(np.fft.fft(strn*window))**2
+    
     funSmooth = Gauss(frqs,0,smooth_width)
+    
     return np.fft.fftshift(frqs), np.fft.fftshift(ps), Convolution(ps,funSmooth/funSmooth.sum())
 
 def filterMatch(strn,window,template,noise_model):
     
-    data_ft = np.fft.fft(window * strn)
+    ftData = np.fft.fft(window * strn)
     
-    template_ft = np.fft.fft(window * template)
+    ftTempl = np.fft.fft(window * template)
     
-    Ninv_ft= np.reciprocal(noise_model)
-    rhs = np.fft.ifft(np.conj(template_ft)*Ninv_ft*data_ft)
+    rhs = np.fft.ifft(np.conj(ftTempl)*np.reciprocal(noise_model)*ftData)
     
     return np.fft.fftshift(rhs)  
+
+
+def readFile(data_dir, fileString):
+    
+    data = h5py.File(data_dir + fileString,'r')
+    temp = data['template']
+    return temp[0], temp[1]
 
 def SN1(filterMatch,window,template,noise_model):
     
     noise = np.sqrt(np.mean(filterMatch**2))  
     return np.abs(filterMatch)/noise
-
-def readFile(data_dir,filename):
-    dataFile = h5py.File(data_dir+filename,'r')
-    template = dataFile['template']
-    return template[0], template[1]
 
 def findEvents(json_fname, events):
     
@@ -113,7 +119,6 @@ def findEvents(json_fname, events):
         
     return times,frqs,ps,smoothPS,filterMatches,SN,templates
 
-
 times, frqs, ps, smoothPS, filterMatches, SN, templates = findEvents(json_fname,events)
 
 for event in events:
@@ -143,30 +148,30 @@ for event in events:
     plt.show()
                                         
     
-event = 'LVT151012'    #Just serves as an example 
+eventExample = 'LVT151012'    #Just serves as an example 
     
-plt.plot(times[event], filterMatches[event][0])
+plt.plot(times[eventExample], filterMatches[eventExample][0])
 plt.xlabel('Time Offset (sec)')
 plt.grid()
 plt.title('LVT151012: Matched Filter Hartsford')
 plt.savefig('PSET6_Q5_3Harts.png',bbox_inches='tight')
 plt.show()
 
-plt.plot(times[event], SN[event][0])
+plt.plot(times[eventExample], SN[eventExample][0])
 plt.xlabel('Time Offset (sec)')
 plt.grid()
 plt.title('LVT151012: SNR Hartsford')
 plt.savefig('PSET6_Q5_4Harts.png',bbox_inches='tight')
 plt.show()
 
-plt.plot(times[event], filterMatches[event][1])
+plt.plot(times[eventExample], filterMatches[eventExample][1])
 plt.xlabel('Time Offset (sec)')
 plt.grid()
 plt.title('LVT151012: Matched Filter Livingston ')
 plt.savefig('PSET6_Q5_3Liv.png',bbox_inches='tight')
 plt.show()
 
-plt.plot(times[event], SN[event][1])
+plt.plot(times[eventExample], SN[eventExample][1])
 plt.xlabel('Time Offset (sec)')
 plt.grid()
 plt.title('LVT151012: SNR Livingston')
