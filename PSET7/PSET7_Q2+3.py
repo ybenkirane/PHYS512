@@ -69,7 +69,7 @@ dx = np.linspace(0, tail, 101)
 
 CauchSamp = np.array([CauchyRando(tail) for i in range(int(1e5))])
 
-print("Accepteance Rate:", len(CauchSamp)/int(1e5))
+print("Acceptance Rate:", len(CauchSamp)/int(1e5))
 
 plt.hist(CauchSamp, dx, density = True, label = "Cauchy Bins")
 plt.plot(dx, CauchyCurve(dx)/np.arctan(tail), label = "Cauchy Curve", color = 'red')
@@ -85,7 +85,7 @@ plt.show()
 
 ExpSamp = ExpRando(tail)
 
-print("Accepteance Rate:", len(ExpSamp)/int(1e5))
+print("Acceptance Rate:", len(ExpSamp)/int(1e5))
 
 plt.hist(ExpSamp, dx, density = True, label = "Exponential Bins")
 plt.plot(dx, np.exp(-dx)/(1  + np.sinh(tail) - np.cosh(tail)), label = "Exponential Curve", color = 'green')
@@ -100,7 +100,7 @@ plt.show()
 
 pdfPoints = (v/u)[approved]
 
-print("Accepteance Rate of PDF:", len(pdfPoints)/len(approved))
+print("Acceptance Rate of PDF:", len(pdfPoints)/len(approved))
 
 plt.hist(pdfPoints, bins = dx, density=True, label = "PDF Bins")
 plt.plot(dx, np.exp(-dx)/(1  + np.sinh(tail) - np.cosh(tail)), label = "Exponential PDF", color = 'green')
