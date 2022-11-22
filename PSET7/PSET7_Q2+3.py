@@ -34,24 +34,24 @@ def CauchyRando(tail):
 
 def ExpRando(tail):
     
-    rand0 = np.random.rand(int(1e5))*tail
-    rand1 = np.array([CauchyRando(tail) for i in range(int(1e5))])
+    randoCauch = np.array([CauchyRando(tail) for i in range(int(1e5))])
+    randoNum = np.random.rand(int(1e5))*tail
     
-    approved = rand0 < np.exp(-rand1) / CauchyCurve(rand1)
+    approved = randoNum < np.exp(-randoCauch) / CauchyCurve(randoCauch)
     
-    return rand1[approved]
+    return randoCauch[approved]
 
 
 xDom = np.linspace(0, 10, 1001)
+
 u = np.random.rand(int(1e5))
 v = np.random.rand(int(1e5))*2/np.e
 
 approved = u <= np.sqrt(np.exp(-v/u))
 
-
-plt.plot(xDom , Gaussian(xDom), ls = '--', label = 'Gaussian')
 plt.plot(xDom , PowLaw(xDom), ls = '--', label = "Power Law")
 plt.plot(xDom , Lorentz(xDom), ls = '--', label = 'Lorentzian')
+plt.plot(xDom , Gaussian(xDom), ls = '--', label = 'Gaussian')
 plt.plot(xDom, np.exp(-xDom), c= 'k', label ="Exponential, $\lambda = 1$")
 plt.plot(xDom, xDom*0 + 1, label = "Uniform")
 plt.plot(xDom, CauchyCurve(xDom), label = "Cauchy")
@@ -73,7 +73,7 @@ print("approvedance Rate:", len(CauchSamp)/int(1e5))
 
 plt.hist(CauchSamp, dx, density = True, label = "Cauchy Bins")
 plt.plot(dx, CauchyCurve(dx)/np.arctan(tail), label = "Cauchy Curve", color = 'red')
-plt.plot(dx, np.exp(-dx)*(1 - np.cosh(tail) + np.sinh(tail)), ls = '--', label = "Exponential Curve", color = 'green')
+plt.plot(dx, np.exp(-dx)*(1  + np.sinh(tail) - np.cosh(tail)), ls = '--', label = "Exponential Curve", color = 'green')
 plt.xlabel('x')
 plt.ylabel('f(x)')
 plt.title('Cauchy Sampling')
@@ -88,7 +88,7 @@ ExpSamp = ExpRando(tail)
 print("approvedance Rate:", len(ExpSamp)/int(1e5))
 
 plt.hist(ExpSamp, dx, density = True, label = "Exponential Bins")
-plt.plot(dx, np.exp(-dx)/(1 - np.cosh(tail) + np.sinh(tail)), label = "Exponential Curve", color = 'green')
+plt.plot(dx, np.exp(-dx)/(1  + np.sinh(tail) - np.cosh(tail)), label = "Exponential Curve", color = 'green')
 plt.plot(dx, CauchyCurve(dx)/np.arctan(tail), ls = '--', label = "Cauchy Curve", color = 'red')
 plt.xlabel('x')
 plt.ylabel('f(x)')
@@ -103,11 +103,11 @@ pdfPoints = (v/u)[approved]
 print("approvedance Rate of PDF:", len(pdfPoints)/len(approved))
 
 plt.hist(pdfPoints, bins = dx, density=True, label = "PDF Bins")
-plt.plot(dx, np.exp(-dx)/(1 - np.cosh(tail) + np.sinh(tail)), label = "Exponential PDF", color = 'green')
+plt.plot(dx, np.exp(-dx)/(1  + np.sinh(tail) - np.cosh(tail)), label = "Exponential PDF", color = 'green')
 plt.xlabel('x')
 plt.ylabel('f(x)')
-plt.title('Exponential Sampling')
+plt.title('PDF Sampling')
 plt.grid()
 plt.legend()
-plt.savefig("PSET7_Q2_PDF.png")
+plt.savefig("PSET7_Q3_PDF.png")
 plt.show()
