@@ -58,11 +58,6 @@ plt.savefig('PSET7_Q1_CrossSection.png')
 plt.show()
     
 
-
-
-
-
-
 py_rand = np.random.randint(0, limit, size=(size, 3))
 
 fig = plt.figure(figsize=(20,20))
