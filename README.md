@@ -1,2 +1,2 @@
 # PHYS512
- PSET Solutions in Comp Physics
+ PSET Solutions to Graduate Computational Physics at McGill 
